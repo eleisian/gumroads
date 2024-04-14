@@ -218,7 +218,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
       </section>
 
       <section>
-        <h2>Staff picks</h2>
+        <h2>Staff </h2>
         <div className="carousel-container">
           <Carousel>
             {dummyCards.map((card) => (

@@ -1,23 +1,37 @@
+@font-face {
+    font-family: 'mabry pro';
+    src: url(https://assets.gumroad.com/packs/static/19db990205089207b039.woff2);
+  }
+  
+  @font-face {
+    font-family: 'mabry pro';
+    src: url(https://assets.gumroad.com/packs/static/b155e959ca3c72194673.woff2);
+    font-style: italic;
+  }
+  
+  @font-face {
+    font-family: 'mabry pro';
+    src: url(https://assets.gumroad.com/packs/static/f301b7100da17db3c2c0.woff2);
+    font-weight: 700;
+  }
+  
+  @font-face {
+    font-family: 'mabry pro';
+    src: url(https://assets.gumroad.com/packs/static/aaec7850d09c0889a8b5.woff2);
+    font-weight: 700;
+    font-style: italic;
+  }
+
 :root {
     /* Define global CSS variables */
     --input-width: 90%;
     /* Default width for input */
 }
 
-main {
-    overflow: auto;
-    grid-column: 1;
-    grid-row: 1;
-    background-color: #333;
-}
-header{
-    display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 1rem .75rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
+* {
+    font-family: 'mabry pro', Arial, sans-serif; /* Fallback fonts */
+  }
+
 
 .hero {
     position: relative;
@@ -121,7 +135,7 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: aqua;
+    background-color: beige;
     overflow-x: hidden;
     width: 100%;
 }
@@ -244,24 +258,24 @@ h2 {
     position: relative;
 }
 /* Media query for mobile devices */
+/* Media query for mobile devices */
 @media (max-width: 768px) {
     main {
         margin: auto;
     }
 
-    .hero-actions {
+    .hero .hero-actions {
         flex-direction: column;
         /* Change flex direction to column for mobile */
     }
 
-    .input {
+    .hero .input {
         max-width: var(--input-width);
         /* Limit the input width for mobile */
     }
 
-    .logo-full {
+    .hero .logo-full {
         justify-content: left;
         align-items: center;
     }
-    
 }
