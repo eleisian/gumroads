@@ -30,26 +30,28 @@ const Card: React.FC<CardProps> = ({
   onMouseMove,
 }) => {
   return (
-    <a
-      href={link}
-      className="card-link"
-      onClick={onClick}
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
-      onMouseMove={onMouseMove}
-    >
-      <div className="card">
-        <img src={imageUrl} alt="Product" />
-        <div className="card-details">
-          <p>{description}</p>
-          <p>Creator: {creator}</p>
-          <img src={iconUrl} alt="Icon" />
-          <div className="rating">Rating: {rating}</div>
-          <div className="price">Price: ${price}</div>
+    <div className="card-link">
+      <a
+        href={link}
+        onClick={onClick}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onMouseMove={onMouseMove}
+      >
+        <div className="card">
+          <img src={imageUrl} alt="Product" />
+          <div className="card-details">
+            <p>{description}</p>
+            <p>Creator: {creator}</p>
+            <img src={iconUrl} alt="Icon" />
+            <div className="rating">Rating: {rating}</div>
+            <div className="price">Price: ${price}</div>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
   );
 };
+
 
 export default Card;

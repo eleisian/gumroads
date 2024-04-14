@@ -1,6 +1,4 @@
-// DiscoverPage.tsx
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import logo from '../assets/logo.svg';
 import searchIcon from '../assets/search.svg';
 import './DiscoverPage.css';
@@ -18,40 +16,33 @@ interface DiscoverPageProps {
 
 const DiscoverPage: React.FC<DiscoverPageProps> = () => {
   useEffect(() => {
-    document.title = "Gumroads Discover"; // Set your desired website title here
+    document.title = "Gumroads Discover";
   }, []);
 
   const [isFocused, setIsFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // Dummy search results for testing purposes
-  const dummySearchResults: SearchResult[] = [
-    { id: 1, name: 'Product 1' },
-    { id: 2, name: 'Product 2' },
-    { id: 3, name: 'Product 3' },
-    { id: 4, name: 'Product 4' },
-    { id: 5, name: 'Product 5' },
-  ];
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setSearchQuery(value);
-
-    // Use dummy search results for testing purposes
-    setSearchResults(value.trim() !== '' ? dummySearchResults : []);
+    // You may add actual search logic here
+    setSearchResults(value.trim() !== '' ? searchResults : []);
   };
 
   const handleItemClick = (item: SearchResult) => {
-    // Handle the selected item, e.g., navigate to its details page
     console.log('Selected item:', item);
+    // You may add navigation logic here
   };
 
   const dummyCards = [
     {
       id: 1,
       imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-      description: 'Description of Product 1',
+      description: 'Product 1',
       creator: 'Creator 1',
       iconUrl: 'url_to_icon_1',
       rating: 4.5,
@@ -61,7 +52,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
     {
         id: 1,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Description of Product 1',
+        description: 'Product 1',
         creator: 'Creator 1',
         iconUrl: 'url_to_icon_1',
         rating: 4.5,
@@ -71,7 +62,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
       {
         id: 1,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Description of Product 1',
+        description: 'Product 1',
         creator: 'Creator 1',
         iconUrl: 'url_to_icon_1',
         rating: 4.5,
@@ -81,7 +72,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
       {
         id: 1,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Description of Product 1',
+        description: 'Product 1',
         creator: 'Creator 1',
         iconUrl: 'url_to_icon_1',
         rating: 4.5,
@@ -91,7 +82,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
       {
         id: 1,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Description of Product 1',
+        description: 'Product 1',
         creator: 'Creator 1',
         iconUrl: 'url_to_icon_1',
         rating: 4.5,
@@ -101,7 +92,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
       {
         id: 1,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Description of Product 1',
+        description: 'Product 1',
         creator: 'Creator 1',
         iconUrl: 'url_to_icon_1',
         rating: 4.5,
@@ -111,7 +102,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
       {
         id: 1,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Description of Product 1',
+        description: 'Product 1',
         creator: 'Creator 1',
         iconUrl: 'url_to_icon_1',
         rating: 4.5,
@@ -121,7 +112,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
       {
         id: 1,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Description of Product 1',
+        description: 'Product 1',
         creator: 'Creator 1',
         iconUrl: 'url_to_icon_1',
         rating: 4.5,
@@ -131,27 +122,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
       {
         id: 1,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Description of Product 1',
-        creator: 'Creator 1',
-        iconUrl: 'url_to_icon_1',
-        rating: 4.5,
-        price: 10.99,
-        link: '/product/1', // Example link to product details page
-      },
-      {
-        id: 1,
-        imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Description of Product 1',
-        creator: 'Creator 1',
-        iconUrl: 'url_to_icon_1',
-        rating: 4.5,
-        price: 10.99,
-        link: '/product/1', // Example link to product details page
-      },
-      {
-        id: 1,
-        imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Description of Product 1',
+        description: 'Product 1',
         creator: 'Creator 1',
         iconUrl: 'url_to_icon_1',
         rating: 4.5,
@@ -161,6 +132,23 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
       
     // Add more dummy cards as needed
   ];
+
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (drawerRef.current && !drawerRef.current.contains(event.target as Node)) {
+      setIsDrawerOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <main>
@@ -186,7 +174,6 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
                 className="input-icon"
                 style={{ backgroundImage: `url(${searchIcon})` }}
               ></span>
-              {/* Render dropdown only when input is focused and there are search results */}
               {isFocused && searchResults.length > 0 && (
                 <ul id="search-results" className="search-results">
                   {searchResults.map((result) => (
@@ -198,24 +185,47 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
               )}
             </div>
           </div>
+          <div className='menu-icon-container'>
+            <button
+              className="menu-icon-button"
+              onClick={toggleDrawer}
+            >
+              Menu
+            </button>
+          </div>
         </div>
       </header>
-      <section className="card-section">
+
+      <div ref={drawerRef} className={`drawer ${isDrawerOpen ? 'open' : ''}`}>
+        <button className="close-drawer-button" onClick={toggleDrawer}>
+          X
+        </button>
+        <ul>
+          <li>Menu Item 1</li>
+          <li>Menu Item 2</li>
+        </ul>
+      </div>
+
+      <section>
         <h2>Recommended for you</h2>
-        <Carousel>
-          {dummyCards.map((card) => (
-            <Card
-              key={card.id}
-              imageUrl={card.imageUrl}
-              description={card.description}
-              creator={card.creator}
-              iconUrl={card.iconUrl}
-              rating={card.rating}
-              price={card.price}
-              link={card.link}
-            />
-          ))}
-        </Carousel>
+        <div className="carousel-container">
+          <Carousel>
+            {dummyCards.map((card) => (
+              <Card key={card.id} {...card} />
+            ))}
+          </Carousel>
+        </div>
+      </section>
+
+      <section>
+        <h2>Staff picks</h2>
+        <div className="carousel-container">
+          <Carousel>
+            {dummyCards.map((card) => (
+              <Card key={card.id} {...card} />
+            ))}
+          </Carousel>
+        </div>
       </section>
 
       <section></section>
