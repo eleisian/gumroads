@@ -9,28 +9,34 @@ interface CarouselProps {
 const Carousel: React.FC<CarouselProps> = ({ children }) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [carouselWidth, setCarouselWidth] = useState<number>(0);
+  const [buttonMargin, setButtonMargin] = useState<number>(0);
   const cardWidth = 200; // Width of each card
   const cardGap = 10; // Gap between cards
-  const cardsPerPageLarge = 5; // Default number of cards per page for larger screens
-  const cardsPerPageSmall = 2; // Number of cards per page for mobile devices
 
   useEffect(() => {
-    const updateCarouselWidth = () => {
+    const updateCarouselDimensions = () => {
       if (carouselRef.current) {
-        const screenWidth = window.innerWidth;
-        const cardsPerPage = screenWidth <= 768 ? cardsPerPageSmall : cardsPerPageLarge;
+        const containerWidth = window.innerWidth;
+        let cardsPerPage;
+        if (containerWidth <= 600) {
+          cardsPerPage = 2; // For small screens, show 2 cards per page
+        } else if (containerWidth <= 960) {
+          cardsPerPage = 3; // For medium screens, show 3 cards per page
+        } else {
+          cardsPerPage = 5; // For larger screens, show 5 cards per page
+        }
         const totalWidth = (cardWidth + cardGap) * cardsPerPage - cardGap;
         setCarouselWidth(totalWidth);
       }
     };
 
-    updateCarouselWidth(); // Update width initially
-    window.addEventListener('resize', updateCarouselWidth); // Update width on window resize
+    updateCarouselDimensions(); // Update dimensions initially
+    window.addEventListener('resize', updateCarouselDimensions); // Update dimensions on window resize
 
     return () => {
-      window.removeEventListener('resize', updateCarouselWidth); // Remove event listener on component unmount
+      window.removeEventListener('resize', updateCarouselDimensions); // Remove event listener on component unmount
     };
-  }, [cardWidth, cardGap, cardsPerPageLarge, cardsPerPageSmall]);
+  }, [cardWidth, cardGap]);
 
   const scrollByDistance = (distance: number) => {
     const carousel = carouselRef.current;

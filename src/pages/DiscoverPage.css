@@ -37,6 +37,7 @@
     width: calc(100vw - (100vw - 100%));
     background-color: lime;
 }
+
 .hero-actions {
     display: flex;
     gap: 2rem;
@@ -128,6 +129,7 @@ h2 {
     line-height: 1.3;
     --line-height: 1.95rem;
     font-weight: 400;
+    margin: 0;
 }
 
 .carousel-container {
@@ -135,25 +137,20 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: beige;
+    background-color: grey;
     overflow-x: hidden;
     width: 100%;
 }
 
 .carousel {
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    display: flex;
-    justify-content: flex-start;
-    gap: 0.625rem;
-    width: fit-content;
-    /* Change width to fit content */
-    position: relative;
+    scrollbar-width: none;
+    width: 100%;
 }
+
 .carousel {
-    scrollbar-width: none; /* Firefox */
-  }
+    scrollbar-width: none;
+    /* Firefox */
+}
 
 .carousel::-webkit-scrollbar {
     display: none;
@@ -165,7 +162,7 @@ h2 {
 
 .carousel-button {
     border: none;
-    background: none;
+    background: lime;
     cursor: pointer;
     position: absolute;
     top: 50%;
@@ -174,37 +171,37 @@ h2 {
 }
 
 .carousel-button:first-child {
-    left: 10px;
+    left: 5vh;
     /* Adjust the left padding for the first button */
 }
 
 .carousel-button:last-child {
-    right: 10px;
+    right: 5vh;
     /* Adjust the right padding for the last button */
 }
 
 
 
 .card {
-    width: 12.5rem;
-    /* Set the width of each card */
-    height: 30rem;
-    /* Let the height adjust based on content */
+    width: 200px;
+    /* Adjust as needed */
+    height: auto;
+    /* Adjust as needed */
     background-color: #f9f9f9;
-    /* Add background color to cards */
-    border-radius: 10px;
-    /* Add border radius for rounded corners */
+    border-radius: 3px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    /* Add a subtle shadow effect */
     transition: transform 0.3s ease;
-    /* Add a smooth transition effect */
+    overflow: hidden;
+    margin: 0 auto;
+    /* Center the cards */
 }
 
 
 
 .card img {
     width: 200px;
-    height: 200px;
+    height: auto;
+    z-index: -500;
 }
 
 .card-details {
