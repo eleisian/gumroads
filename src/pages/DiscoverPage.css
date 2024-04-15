@@ -1,47 +1,46 @@
 @font-face {
     font-family: 'mabry pro';
     src: url(https://assets.gumroad.com/packs/static/19db990205089207b039.woff2);
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'mabry pro';
     src: url(https://assets.gumroad.com/packs/static/b155e959ca3c72194673.woff2);
     font-style: italic;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'mabry pro';
     src: url(https://assets.gumroad.com/packs/static/f301b7100da17db3c2c0.woff2);
     font-weight: 700;
-  }
-  
-  @font-face {
+}
+
+@font-face {
     font-family: 'mabry pro';
     src: url(https://assets.gumroad.com/packs/static/aaec7850d09c0889a8b5.woff2);
     font-weight: 700;
     font-style: italic;
-  }
+}
 
 :root {
     /* Define global CSS variables */
-    --input-width: 90%;
+    --global-width: 90%;
     /* Default width for input */
 }
 
 * {
-    font-family: 'mabry pro', Arial, sans-serif; /* Fallback fonts */
-  }
-
-
-.hero {
-    position: relative;
-    height: 5rem;
-    background-color: rgb(0, 255, 0);
+    font-family: 'mabry pro', Arial, sans-serif;
+    /* Fallback fonts */
 }
 
+.hero {
+    width: calc(100vw - (100vw - 100%));
+    background-color: lime;
+}
 .hero-actions {
     display: flex;
     gap: 2rem;
+    background-color: purple;
 }
 
 .logo-full {
@@ -66,7 +65,7 @@
 
 .input {
     padding-left: 42px;
-    width: var(--input-width);
+    width: var(--global-width);
     /* Use the input width variable */
     height: 3.2rem;
     border-radius: 2px;
@@ -99,7 +98,7 @@
     top: calc(100% + 5px);
     /* Position the dropdown below the input field */
     left: 0;
-    width: var(--input-width);
+    width: var(--global-width);
     /* Use the search results width variable */
     background-color: pink;
     border-radius: 5px;
@@ -130,6 +129,7 @@ h2 {
     --line-height: 1.95rem;
     font-weight: 400;
 }
+
 .carousel-container {
     position: relative;
     display: flex;
@@ -142,13 +142,27 @@ h2 {
 
 .carousel {
     overflow-x: auto;
+    overflow-y: hidden;
     white-space: nowrap;
     display: flex;
     justify-content: flex-start;
     gap: 0.625rem;
-    width: fit-content; /* Change width to fit content */
+    width: fit-content;
+    /* Change width to fit content */
     position: relative;
 }
+.carousel {
+    scrollbar-width: none; /* Firefox */
+  }
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel::-webkit-scrollbar-track {
+    display: none;
+}
+
 .carousel-button {
     border: none;
     background: none;
@@ -157,42 +171,55 @@ h2 {
     top: 50%;
     transform: translateY(-50%);
     z-index: 1;
-    padding: 0 10rem; /* Add padding to move the buttons inward */
 }
 
 .carousel-button:first-child {
-    left: 10px; /* Adjust the left padding for the first button */
+    left: 10px;
+    /* Adjust the left padding for the first button */
 }
 
 .carousel-button:last-child {
-    right: 10px; /* Adjust the right padding for the last button */
+    right: 10px;
+    /* Adjust the right padding for the last button */
 }
 
 
 
 .card {
-    width: 12.5rem; /* Set the width of each card */
-    height: 30rem; /* Let the height adjust based on content */ /* Adjust the gap between cards */
-    background-color: #f9f9f9; /* Add background color to cards */
+    width: 12.5rem;
+    /* Set the width of each card */
+    height: 30rem;
+    /* Let the height adjust based on content */
+    background-color: #f9f9f9;
+    /* Add background color to cards */
+    border-radius: 10px;
+    /* Add border radius for rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow effect */
+    transition: transform 0.3s ease;
+    /* Add a smooth transition effect */
 }
 
 
-  
-  .card img {
-    width:200px;
-    height:200px;
-  }
-  
-  .card-details {
+
+.card img {
+    width: 200px;
+    height: 200px;
+}
+
+.card-details {
     padding: 1rem;
-    overflow: hidden; /* Hide overflowing content */
-    text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
-    white-space: nowrap; /* Prevent text wrapping */
-  }
-  
-  .card-details p {
+    overflow: hidden;
+    /* Hide overflowing content */
+    text-overflow: ellipsis;
+    /* Display ellipsis (...) for truncated text */
+    white-space: nowrap;
+    /* Prevent text wrapping */
+}
+
+.card-details p {
     margin: 0;
-  }
+}
 
 .card-link {
     text-decoration: none;
@@ -203,16 +230,16 @@ h2 {
 .card-link * {
     user-select: none;
 }
-  
-  .rating {
+
+.rating {
     margin-top: 0.5rem;
-  }
-  
-  .price {
+}
+
+.price {
     margin-top: 0.5rem;
     font-weight: bold;
-  }
-  
+}
+
 .drawer {
     position: fixed;
     top: 0;
@@ -257,6 +284,7 @@ h2 {
     color: #333;
     position: relative;
 }
+
 /* Media query for mobile devices */
 /* Media query for mobile devices */
 @media (max-width: 768px) {
@@ -270,7 +298,7 @@ h2 {
     }
 
     .hero .input {
-        max-width: var(--input-width);
+        max-width: var(--global-width);
         /* Limit the input width for mobile */
     }
 

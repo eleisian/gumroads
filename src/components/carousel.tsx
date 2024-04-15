@@ -4,30 +4,23 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 interface CarouselProps {
   children: React.ReactNode;
-  cardsPerPage?: number; // Optionally allow specifying the number of cards to display per page
 }
 
-const Carousel: React.FC<CarouselProps> = ({ children, cardsPerPage = 5 }) => {
+const Carousel: React.FC<CarouselProps> = ({ children }) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [carouselWidth, setCarouselWidth] = useState<number>(0);
-  const [buttonPadding, setButtonPadding] = useState<number>(10); // Default padding value
+  const cardWidth = 200; // Width of each card
+  const cardGap = 10; // Gap between cards
+  const cardsPerPageLarge = 5; // Default number of cards per page for larger screens
+  const cardsPerPageSmall = 2; // Number of cards per page for mobile devices
 
   useEffect(() => {
     const updateCarouselWidth = () => {
       if (carouselRef.current) {
-        const containerWidth = carouselRef.current.offsetWidth;
-        const cardWidth = 200; // Adjust as per your card width
-        const cardGap = 10; // Adjust as per your gap between cards
-        const totalWidth = (cardWidth + cardGap) * cardsPerPage - cardGap; // Subtract the last card's gap
-        setCarouselWidth(totalWidth);
-        
-        // Calculate button padding dynamically based on screen width
         const screenWidth = window.innerWidth;
-        const maxButtonPadding = 10; // Maximum padding value
-        const minButtonPadding = 5; // Minimum padding value
-        const paddingScale = (screenWidth - 768) / 768; // Scale the padding based on screen width
-        const adjustedPadding = maxButtonPadding - (maxButtonPadding - minButtonPadding) * paddingScale;
-        setButtonPadding(adjustedPadding);
+        const cardsPerPage = screenWidth <= 768 ? cardsPerPageSmall : cardsPerPageLarge;
+        const totalWidth = (cardWidth + cardGap) * cardsPerPage - cardGap;
+        setCarouselWidth(totalWidth);
       }
     };
 
@@ -37,37 +30,39 @@ const Carousel: React.FC<CarouselProps> = ({ children, cardsPerPage = 5 }) => {
     return () => {
       window.removeEventListener('resize', updateCarouselWidth); // Remove event listener on component unmount
     };
-  }, [cardsPerPage]);
+  }, [cardWidth, cardGap, cardsPerPageLarge, cardsPerPageSmall]);
 
-  const scrollToLeft = () => {
+  const scrollByDistance = (distance: number) => {
     const carousel = carouselRef.current;
     if (carousel) {
       carousel.scrollBy({
-        left: -carouselWidth, // Scroll by the width of the carousel
-        behavior: 'smooth', // Add smooth scrolling effect
+        left: distance,
+        behavior: 'smooth',
       });
     }
   };
 
+  const scrollToLeft = () => {
+    const scrollDistance = (cardWidth + cardGap) * 2; // Scroll by the width of two cards
+    scrollByDistance(-scrollDistance);
+  };
+
   const scrollToRight = () => {
-    const carousel = carouselRef.current;
-    if (carousel) {
-      carousel.scrollBy({
-        left: carouselWidth, // Scroll by the width of the carousel
-        behavior: 'smooth', // Add smooth scrolling effect
-      });
-    }
+    const scrollDistance = (cardWidth + cardGap) * 2; // Scroll by the width of two cards
+    scrollByDistance(scrollDistance);
   };
 
   return (
     <div className="carousel-container">
-      <button className="carousel-button" style={{ padding: `0 ${buttonPadding}px` }} onClick={scrollToLeft}>
+      <button className="carousel-button" onClick={scrollToLeft}>
         <ArrowBackIosIcon fontSize="large" />
       </button>
-      <div ref={carouselRef} className="carousel" style={{ width: `${carouselWidth}px` }}>
-        {children}
+      <div ref={carouselRef} className="carousel" style={{ width: `${carouselWidth}px`, overflowX: 'auto' }}>
+        <div style={{ display: 'flex', gap: '0.625rem' }}>
+          {children}
+        </div>
       </div>
-      <button className="carousel-button" style={{ padding: `0 ${buttonPadding}px` }} onClick={scrollToRight}>
+      <button className="carousel-button" onClick={scrollToRight}>
         <ArrowForwardIosIcon fontSize="large" />
       </button>
     </div>

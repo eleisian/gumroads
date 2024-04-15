@@ -50,7 +50,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
       link: '/product/1', // Example link to product details page
     },
     {
-        id: 1,
+        id: 2,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
         description: 'Product 1',
         creator: 'Creator 1',
@@ -60,7 +60,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
         link: '/product/1', // Example link to product details page
       },
       {
-        id: 1,
+        id: 3,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
         description: 'Product 1',
         creator: 'Creator 1',
@@ -70,7 +70,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
         link: '/product/1', // Example link to product details page
       },
       {
-        id: 1,
+        id: 4,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
         description: 'Product 1',
         creator: 'Creator 1',
@@ -80,7 +80,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
         link: '/product/1', // Example link to product details page
       },
       {
-        id: 1,
+        id: 5,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
         description: 'Product 1',
         creator: 'Creator 1',
@@ -90,7 +90,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
         link: '/product/1', // Example link to product details page
       },
       {
-        id: 1,
+        id: 6,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
         description: 'Product 1',
         creator: 'Creator 1',
@@ -100,7 +100,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
         link: '/product/1', // Example link to product details page
       },
       {
-        id: 1,
+        id: 7,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
         description: 'Product 1',
         creator: 'Creator 1',
@@ -110,7 +110,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
         link: '/product/1', // Example link to product details page
       },
       {
-        id: 1,
+        id: 8,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
         description: 'Product 1',
         creator: 'Creator 1',
@@ -120,7 +120,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
         link: '/product/1', // Example link to product details page
       },
       {
-        id: 1,
+        id: 9,
         imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
         description: 'Product 1',
         creator: 'Creator 1',
