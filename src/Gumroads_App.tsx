@@ -1,13 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
+import WelcomePage from './pages/WelcomePage';
 import DiscoverPage from './pages/DiscoverPage';
 
-
-
 function Gumroads_App() {
+  const [entered, setEntered] = useState(false);
+
+  const handleEnter = () => {
+    setEntered(true);
+  };
+
   return (
-    /* Main Page */
-    <DiscoverPage></DiscoverPage>
-    /* Other Pages */
+    <div>
+      {!entered && <WelcomePage onEnter={handleEnter} />}
+      {entered && <DiscoverPage />}
+    </div>
   );
 }
 

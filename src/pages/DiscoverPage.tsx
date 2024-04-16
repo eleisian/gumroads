@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
-import logo from '../assets/logo.svg';
 import searchIcon from '../assets/search.svg';
 import './DiscoverPage.css';
 import Carousel from '../components/carousel';
 import Card from '../components/card';
+import SearchComponent from '../components/search';
 
 interface SearchResult {
   id: number;
@@ -18,31 +18,15 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
   useEffect(() => {
     document.title = "Gumroads Discover";
   }, []);
-
   const [isFocused, setIsFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  const drawerRef = useRef<HTMLDivElement>(null);
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setSearchQuery(value);
-    // You may add actual search logic here
-    setSearchResults(value.trim() !== '' ? searchResults : []);
-  };
-
-  const handleItemClick = (item: SearchResult) => {
-    console.log('Selected item:', item);
-    // You may add navigation logic here
-  };
 
   const dummyCards = [
     {
       id: 1,
       imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-      description: 'Product 1',
+      description: 'Product 1\n\n\n',
       creator: 'Creator 1',
       iconUrl: 'url_to_icon_1',
       rating: 4.5,
@@ -50,188 +34,193 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
       link: '/product/1', // Example link to product details page
     },
     {
-        id: 2,
-        imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Product 1',
-        creator: 'Creator 1',
-        iconUrl: 'url_to_icon_1',
-        rating: 4.5,
-        price: 10.99,
-        link: '/product/1', // Example link to product details page
-      },
-      {
-        id: 3,
-        imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Product 1',
-        creator: 'Creator 1',
-        iconUrl: 'url_to_icon_1',
-        rating: 4.5,
-        price: 10.99,
-        link: '/product/1', // Example link to product details page
-      },
-      {
-        id: 4,
-        imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Product 1',
-        creator: 'Creator 1',
-        iconUrl: 'url_to_icon_1',
-        rating: 4.5,
-        price: 10.99,
-        link: '/product/1', // Example link to product details page
-      },
-      {
-        id: 5,
-        imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Product 1',
-        creator: 'Creator 1',
-        iconUrl: 'url_to_icon_1',
-        rating: 4.5,
-        price: 10.99,
-        link: '/product/1', // Example link to product details page
-      },
-      {
-        id: 6,
-        imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Product 1',
-        creator: 'Creator 1',
-        iconUrl: 'url_to_icon_1',
-        rating: 4.5,
-        price: 10.99,
-        link: '/product/1', // Example link to product details page
-      },
-      {
-        id: 7,
-        imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Product 1',
-        creator: 'Creator 1',
-        iconUrl: 'url_to_icon_1',
-        rating: 4.5,
-        price: 10.99,
-        link: '/product/1', // Example link to product details page
-      },
-      {
-        id: 8,
-        imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Product 1',
-        creator: 'Creator 1',
-        iconUrl: 'url_to_icon_1',
-        rating: 4.5,
-        price: 10.99,
-        link: '/product/1', // Example link to product details page
-      },
-      {
-        id: 9,
-        imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
-        description: 'Product 1',
-        creator: 'Creator 1',
-        iconUrl: 'url_to_icon_1',
-        rating: 4.5,
-        price: 10.99,
-        link: '/product/1', // Example link to product details page
-      },
-      
+      id: 2,
+      imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
+      description: 'Product 1\n\n\n',
+      creator: 'Creator 1',
+      iconUrl: 'url_to_icon_1',
+      rating: 4.5,
+      price: 10.99,
+      link: '/product/1', // Example link to product details page
+    },
+    {
+      id: 3,
+      imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
+      description: 'Product 1\n\n\n',
+      creator: 'Creator 1',
+      iconUrl: 'url_to_icon_1',
+      rating: 4.5,
+      price: 10.99,
+      link: '/product/1', // Example link to product details page
+    },
+    {
+      id: 4,
+      imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
+      description: 'Product 1\n\n\n',
+      creator: 'Creator 1',
+      iconUrl: 'url_to_icon_1',
+      rating: 4.5,
+      price: 10.99,
+      link: '/product/1', // Example link to product details page
+    },
+    {
+      id: 5,
+      imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
+      description: 'Product 1\n\n\n',
+      creator: 'Creator 1',
+      iconUrl: 'url_to_icon_1',
+      rating: 4.5,
+      price: 10.99,
+      link: '/product/1', // Example link to product details page
+    },
+    {
+      id: 6,
+      imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
+      description: 'Product 1\n\n\n',
+      creator: 'Creator 1',
+      iconUrl: 'url_to_icon_1',
+      rating: 4.5,
+      price: 10.99,
+      link: '/product/1', // Example link to product details page
+    },
+    {
+      id: 7,
+      imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
+      description: 'Product 1\n\n\n',
+      creator: 'Creator 1',
+      iconUrl: 'url_to_icon_1',
+      rating: 4.5,
+      price: 10.99,
+      link: '/product/1', // Example link to product details page
+    },
+    {
+      id: 8,
+      imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
+      description: 'Product 1\n\n\n',
+      creator: 'Creator 1',
+      iconUrl: 'url_to_icon_1',
+      rating: 4.5,
+      price: 10.99,
+      link: '/product/1', // Example link to product details page
+    },
+    {
+      id: 9,
+      imageUrl: 'https://public-files.gumroad.com/2f3fp3v7aqrzh8lutbzr9k0kwha9',
+      description: 'Product 1\n\n\n',
+      creator: 'Creator 1',
+      iconUrl: 'url_to_icon_1',
+      rating: 4.5,
+      price: 10.99,
+      link: '/product/1', // Example link to product details page
+    },
     // Add more dummy cards as needed
   ];
 
-  const toggleDrawer = () => {
-    setIsDrawerOpen(!isDrawerOpen);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    setSearchQuery(value);
+
+    // Dummy search results based on the input value
+    const dummyResults: SearchResult[] = [
+      { id: 1, name: 'Result 1' },
+      { id: 2, name: 'Result 2' },
+      { id: 3, name: 'Result 3' },
+      // Add more dummy results as needed
+    ];
+
+    // Set the search results based on the input value
+    setSearchResults(value.trim() !== '' ? dummyResults : []);
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (drawerRef.current && !drawerRef.current.contains(event.target as Node)) {
-      setIsDrawerOpen(false);
-    }
+  const handleItemClick = (item: SearchResult) => {
+    console.log('Selected item:', item);
+    // You may add navigation logic here
   };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  const handleMouseEnter = () => {
+    setIsFocused(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsFocused(false);
+  };
 
   return (
-    <main>
-      <header className="hero">
-        <div className='hero-content'>
-          <div className='hero-actions'>
-            <div className='logo-full'><img src={logo} alt="Logo"/></div>
-            <div className="input-container">
-              <input
-                role="combobox"
-                aria-expanded="false"
-                aria-controls="search-results"
-                type="search"
-                placeholder="Search products"
-                aria-autocomplete="list"
-                className="input"
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
-                onChange={handleInputChange}
-                value={searchQuery}
-              />
-              <span
-                className="input-icon"
-                style={{ backgroundImage: `url(${searchIcon})` }}
-              ></span>
-              {isFocused && searchResults.length > 0 && (
-                <ul id="search-results" className="search-results">
-                  {searchResults.map((result) => (
-                    <li key={result.id} onClick={() => handleItemClick(result)}>
-                      {result.name}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </div>
-          <div className='menu-icon-container'>
-            <button
-              className="menu-icon-button"
-              onClick={toggleDrawer}
-            >
-              Menu
-            </button>
-          </div>
-        </div>
-      </header>
+    <body>
+      <div id='root'>
+        <div>
+          <body id='discover-page'>
+            <main style={{ minHeight: '100vh', display: 'grid', gridTemplateRows: 'auto 1fr auto' }}>
+              <header className='hero'>
+                <div className='hero-actions'>
+                  <a className="logo" href="/"><div className="logo-full">&nbsp;</div>
+                  </a>
+                  <div className="separator"></div>
+                  <div className="combobox" style={{flexGrow:'1'}}>
+                    <div className="input">
+                      <span className="icon icon-solid-search"></span>
+                      <SearchComponent></SearchComponent>
+                    </div>
+                    {/* <div hidden><datalist id=":R1l:"></datalist></div> */}
+                  </div>
+                  <div role='nav'>
+                    <div className='nested-menu'>
+                      <div role='menubar' aria-busy='false'>
+                        <div>
+                          <a href="/" className={`pill button ${isFocused ? 'focused' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} role="menuitem" aria-current={isFocused ? 'true' : 'false'}>All</a>
+                        </div>
+                        <div className='popover'>
+                          <a href="/3d" className={`pill button ${isFocused ? 'focused' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} role="menuitem" aria-current={isFocused ? 'true' : 'false'} aria-haspopup="true" aria-expanded="false" aria-controls=":r3j:">3D</a>
+                        </div>
+                        <div className='popover'>
+                          <a href="/3d" className={`pill button ${isFocused ? 'focused' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} role="menuitem" aria-current={isFocused ? 'true' : 'false'} aria-haspopup="true" aria-expanded="false" aria-controls=":r3j:">Audio</a>
+                        </div>
+                        <div className='popover'>
+                          <a href="/3d" className={`pill button ${isFocused ? 'focused' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} role="menuitem" aria-current={isFocused ? 'true' : 'false'} aria-haspopup="true" aria-expanded="false" aria-controls=":r3j:">Business & Money</a>
+                        </div>
+                        <div className='popover'>
+                          <a href="/3d" className={`pill button ${isFocused ? 'focused' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} role="menuitem" aria-current={isFocused ? 'true' : 'false'} aria-haspopup="true" aria-expanded="false" aria-controls=":r3j:">Comics & Graphic Novels</a>
+                        </div>
+                        <div className='popover'>
+                          <a href="/3d" className={`pill button ${isFocused ? 'focused' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} role="menuitem" aria-current={isFocused ? 'true' : 'false'} aria-haspopup="true" aria-expanded="false" aria-controls=":r3j:">Design</a>
+                        </div>
+                        <div className='popover'>
+                          <a href="/3d" className={`pill button ${isFocused ? 'focused' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} role="menuitem" aria-current={isFocused ? 'true' : 'false'} aria-haspopup="true" aria-expanded="false" aria-controls=":r3j:">Drawing & Painting</a>
+                        </div>
+                        <div className='popover'>
+                          <a href="/3d" className={`pill button ${isFocused ? 'focused' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} role="menuitem" aria-current={isFocused ? 'true' : 'false'} aria-haspopup="true" aria-expanded="false" aria-controls=":r3j:">Education</a>
+                        </div>
+                        <div className='popover'>
+                          <a href="/3d" className={`pill button ${isFocused ? 'focused' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} role="menuitem" aria-current={isFocused ? 'true' : 'false'} aria-haspopup="true" aria-expanded="false" aria-controls=":r3j:">Fiction Books</a>
+                        </div>
+                        <div className='popover'>
+                          <a href="/3d" className={`pill button ${isFocused ? 'focused' : ''}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} role="menuitem" aria-current={isFocused ? 'true' : 'false'} aria-haspopup="true" aria-expanded="false" aria-controls=":r3j:">Films</a>
+                        </div>
+                        <div>
+                        <a href="#" className="pill button expandable" role="menuitem" aria-current="false" aria-haspopup="true" aria-expanded="false" aria-controls=":rac:" aria-label="More Categories">More</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </header>
+    
+              <div style={{ display: 'grid', gap: 'var(--spacer-6)' }}>
+                <div className='paragraphs'>
+                  <h2>Staff picks</h2>
+                  <div className='product-card-grid narrow'>
+                    {dummyCards.map((card) => (
+                      <Card key={card.id} {...card} />
+                    ))}
 
-      <div ref={drawerRef} className={`drawer ${isDrawerOpen ? 'open' : ''}`}>
-        <button className="close-drawer-button" onClick={toggleDrawer}>
-          X
-        </button>
-        <ul>
-          <li>Menu Item 1</li>
-          <li>Menu Item 2</li>
-        </ul>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </body>
+        </div>
       </div>
-
-      <section>
-        <h2>Staff picks</h2>
-        <div className="carousel-container">
-          <Carousel>
-            {dummyCards.map((card) => (
-              <Card key={card.id} {...card} />
-            ))}
-          </Carousel>
-        </div>
-      </section>
-
-      <section>
-        <h2>Recommended for you</h2>
-        <div className="carousel-container">
-          <Carousel>
-            {dummyCards.map((card) => (
-              <Card key={card.id} {...card} />
-            ))}
-          </Carousel>
-        </div>
-      </section>
-
-      <section>
-        <h2>Products by category</h2>
-      </section>
-    </main>
+    </body>
   );
 };
 
