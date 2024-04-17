@@ -3750,11 +3750,27 @@ textarea {
 
 .product-card-carousel {
     position: relative;
-    background-color: grey;
-    overflow-x: hidden;
-    padding:10px;
+    flex-grow: 1;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    
+}
+.card-carousel-button{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    z-index: 5;
+}
+.card-carousel-button:first-child {
+    left: 0vh;
+    /* Adjust the left padding for the first button */
 }
 
+.card-carousel-button:last-child {
+    right: 0vh;
+    /* Adjust the right padding for the last button */
+}
 
 
 .grid,

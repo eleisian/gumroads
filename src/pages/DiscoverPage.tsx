@@ -149,7 +149,6 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
     <body>
       <div id='root'>
         <div>
-          <body id='discover-page'>
             <main style={{ minHeight: '100vh', display: 'grid', gridTemplateRows: 'auto 1fr auto' }}>
               <header className='hero'>
                 <div className='hero-actions'>
@@ -216,7 +215,6 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
                 </div>
               </div>
             </main>
-          </body>
         </div>
       </div>
     </body>
