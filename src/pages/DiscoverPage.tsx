@@ -212,6 +212,12 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
                       <Card key={card.id} {...card} />
                     ))}
                     </Carousel> 
+                  <h2>Recommended for you</h2>
+                  <Carousel>
+                    {dummyCards.map((card) => (
+                      <Card key={card.id} {...card} />
+                    ))}
+                    </Carousel> 
                 </div>
               </div>
             </main>

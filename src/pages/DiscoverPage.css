@@ -90,13 +90,13 @@
     color-scheme: light dark
 }
 
-@media(prefers-color-scheme:light) {
+@media(prefers-color-scheme:dark) {
     :root {
         --csstools-color-scheme--dark: initial
     }
 }
 
-@media(prefers-color-scheme:light) {
+@media(prefers-color-scheme:dark) {
     :root {
         --body-bg: #242423;
         --primary: 221 221 221;
@@ -3750,9 +3750,13 @@ textarea {
 
 .product-card-carousel {
     position: relative;
-    flex-grow: 1;
-    justify-content: flex-start;
+    background-color: green;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-flow: column;
     overflow-x: scroll;
+    gap:11px;
+    padding: 10px;
     
 }
 .card-carousel-button{

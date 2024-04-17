@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForward';
 
 interface CarouselProps {
   children: React.ReactNode;
@@ -11,7 +11,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
   const [carouselWidth, setCarouselWidth] = useState<number>(0);
   const [buttonMargin, setButtonMargin] = useState<number>(0);
   const cardWidth = 215; // Width of each card
-  const cardGap = 10; // Gap between cards
+  const cardGap = 11; // Gap between cards
 
   useEffect(() => {
     const updateCarouselDimensions = () => {
@@ -65,7 +65,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
       <button className="card-carousel-button" onClick={scrollToLeft} style={{marginLeft:buttonMargin}}>
         <ArrowBackIosIcon fontSize="large" />
       </button>
-      <div ref={carouselRef} className="product-card-carousel" style={{ display: 'flex', width:carouselWidth, gap:'10px'}}>
+      <div ref={carouselRef} className="product-card-carousel" style={{width:'auto'}}>
           {children}
       </div>
       <button className="card-carousel-button" onClick={scrollToRight} style={{marginRight:buttonMargin}}>
