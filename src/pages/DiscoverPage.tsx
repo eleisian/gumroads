@@ -204,7 +204,7 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
                   </div>
                 </div>
               </header>
-    
+
               <div style={{ display: 'grid', gap: 'var(--spacer-6)' }}>
                 <div className='paragraphs'>
                   <h2>Staff picks</h2>

@@ -25,9 +25,9 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
         } else {
           cardsPerPage = 5; // For larger screens, show 5 cards per page
         }
-        const totalWidth = (cardWidth + cardGap) * cardsPerPage - cardGap;
+        const totalWidth = (cardWidth + cardGap) * cardsPerPage;
         setCarouselWidth(totalWidth);
-        const margin = (containerWidth - totalWidth) / 3;
+        const margin = (containerWidth - totalWidth) / 2;
         setButtonMargin(margin);
       }
     };
@@ -51,12 +51,12 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
   };
 
   const scrollToLeft = () => {
-    const scrollDistance = (cardWidth + cardGap) * 2; // Scroll by the width of two cards
+    const scrollDistance = (cardWidth + cardGap) ; // Scroll by the width of two cards
     scrollByDistance(-scrollDistance);
   };
 
   const scrollToRight = () => {
-    const scrollDistance = (cardWidth + cardGap) * 2; // Scroll by the width of two cards
+    const scrollDistance = (cardWidth + cardGap); // Scroll by the width of two cards
     scrollByDistance(scrollDistance);
   };
 
@@ -65,7 +65,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
       <button className="carousel-button" onClick={scrollToLeft}>
         <ArrowBackIosIcon fontSize="large" />
       </button>
-      <div ref={carouselRef} className="product-card-carousel" style={{ width: `${carouselWidth}px`, display: 'flex', gap: '0.625rem'  }}>
+      <div ref={carouselRef} className="product-card-carousel" style={{ display: 'flex', gap: '10px' }}>
           {children}
       </div>
       <button className="carousel-button" onClick={scrollToRight}>
