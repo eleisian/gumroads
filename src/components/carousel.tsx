@@ -27,6 +27,8 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
         }
         const totalWidth = (cardWidth + cardGap) * cardsPerPage - cardGap;
         setCarouselWidth(totalWidth);
+        const margin = (containerWidth - totalWidth) / 3;
+        setButtonMargin(margin);
       }
     };
 
@@ -59,14 +61,12 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
   };
 
   return (
-    <div className="carousel-container">
+    <div style={{display:'flex'}}>
       <button className="carousel-button" onClick={scrollToLeft}>
         <ArrowBackIosIcon fontSize="large" />
       </button>
-      <div ref={carouselRef} className="carousel" style={{ width: `${carouselWidth}px`, overflowX: 'auto' }}>
-        <div style={{ display: 'flex', gap: '0.625rem' }}>
+      <div ref={carouselRef} className="product-card-carousel" style={{ width: `${carouselWidth}px`, display: 'flex', gap: '0.625rem'  }}>
           {children}
-        </div>
       </div>
       <button className="carousel-button" onClick={scrollToRight}>
         <ArrowForwardIosIcon fontSize="large" />

@@ -3757,7 +3757,21 @@ textarea {
     overflow-x: hidden;
     width: 100%;
 }
+.carousel-button {
 
+    position: absolute;
+    z-index: 1;
+}
+
+.carousel-button:first-child {
+    left: 0vh;
+    /* Adjust the left padding for the first button */
+}
+
+.carousel-button:last-child {
+    right: 0vh;
+    /* Adjust the right padding for the last button */
+}
 .carousel-container {
     position: relative;
     display: flex;
@@ -3767,6 +3781,7 @@ textarea {
     overflow-x: hidden;
     width: 100%;
 }
+
 
 .grid,
 .product-card-grid {

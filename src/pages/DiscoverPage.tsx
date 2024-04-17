@@ -208,12 +208,11 @@ const DiscoverPage: React.FC<DiscoverPageProps> = () => {
               <div style={{ display: 'grid', gap: 'var(--spacer-6)' }}>
                 <div className='paragraphs'>
                   <h2>Staff picks</h2>
-                  <div className='product-card-grid narrow'>
+                  <Carousel>
                     {dummyCards.map((card) => (
                       <Card key={card.id} {...card} />
                     ))}
-
-                  </div>
+                    </Carousel> 
                 </div>
               </div>
             </main>

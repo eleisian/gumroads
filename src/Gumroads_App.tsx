@@ -10,10 +10,7 @@ function Gumroads_App() {
   };
 
   return (
-    <div>
-      {!entered && <WelcomePage onEnter={handleEnter} />}
-      {entered && <DiscoverPage />}
-    </div>
+    <DiscoverPage></DiscoverPage>
   );
 }
 

@@ -36,7 +36,7 @@ const Card: React.FC<CardProps> = ({
   ));
 
   return (
-    <article className="product-card">
+    <article className="product-card" style={{minWidth:'200px'}}>
       <a className="stretched-link">
         {/* Product image */}
         <div className="img-carousel">
