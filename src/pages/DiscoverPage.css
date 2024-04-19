@@ -3765,6 +3765,14 @@ textarea {
     display: none; /* Hide the scrollbar for WebKit-based browsers */
 }
 
+.product-card-carousel .product-card{
+    min-width: 500px;
+}
+
+.product-card-mobile {
+    min-width: 150px;
+  }
+
 @media (max-width: 600px) {
     .product-card-carousel {
         padding: 10;

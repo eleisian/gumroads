@@ -10,7 +10,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [carouselWidth, setCarouselWidth] = useState<number>(0);
   const [buttonMargin, setButtonMargin] = useState<number>(0);
-  const cardWidth = 215; // Width of each card
+  const [cardWidth, setCardWidth] = useState<number>(215); // Initial width of each card
   const cardGap = 11; // Gap between cards
 
   useEffect(() => {
@@ -20,18 +20,20 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
         let cardsPerPage;
         if (containerWidth <= 600) {
           cardsPerPage = 2; // For small screens, show 2 cards per page
+          setCardWidth(195); // Adjust card width for mobile devices
         } else if (containerWidth <= 960) {
           cardsPerPage = 3; // For medium screens, show 3 cards per page
+          setCardWidth(215); // Reset card width for larger screens
         } else {
           cardsPerPage = 5; // For larger screens, show 5 cards per page
+          setCardWidth(215); // Reset card width for larger screens
         }
         const totalWidth = (cardWidth + cardGap) * cardsPerPage;
         setCarouselWidth(totalWidth);
-        let marginMultiplier
-        if(containerWidth >= 1920){
+        let marginMultiplier;
+        if (containerWidth >= 1920) {
           marginMultiplier = 3;
-        }
-        else{
+        } else {
           marginMultiplier = 5;
         }
         const margin = (containerWidth - totalWidth) / marginMultiplier;
@@ -58,24 +60,24 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
   };
 
   const scrollToLeft = () => {
-    const scrollDistance = (cardWidth + cardGap) ; // Scroll by the width of two cards
+    const scrollDistance = carouselWidth / 2; // Scroll by half of carousel width
     scrollByDistance(-scrollDistance);
   };
 
   const scrollToRight = () => {
-    const scrollDistance = (cardWidth + cardGap); // Scroll by the width of two cards
+    const scrollDistance = carouselWidth / 2; // Scroll by half of carousel width
     scrollByDistance(scrollDistance);
   };
 
   return (
-    <div style={{display:'flex'}}>
-      <button className="card-carousel-button" onClick={scrollToLeft} style={{marginLeft:buttonMargin, height:'15%'}}>
+    <div style={{ display: 'flex' }}>
+      <button className="card-carousel-button" onClick={scrollToLeft} style={{ marginLeft: buttonMargin, height: '15%' }}>
         <ArrowBackIosIcon fontSize="large" />
       </button>
-      <div ref={carouselRef} className="product-card-carousel" style={{ width: 'auto', overflowX: 'scroll', scrollSnapType: 'x mandatory' }}>
-          {children}
+      <div ref={carouselRef} className="product-card-carousel" style={{ width: `${carouselWidth}px`, overflowX: 'scroll', scrollSnapType: 'x mandatory' }}>
+        {children}
       </div>
-      <button className="card-carousel-button" onClick={scrollToRight} style={{marginRight:buttonMargin, height:'15%'}}>
+      <button className="card-carousel-button" onClick={scrollToRight} style={{ marginRight: buttonMargin, height: '15%' }}>
         <ArrowForwardIosIcon fontSize="large" />
       </button>
     </div>

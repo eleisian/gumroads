@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface CardProps {
   id:number;
@@ -30,9 +30,26 @@ const Card: React.FC<CardProps> = ({
       <br /> {/* Add a line break after each line */}
     </React.Fragment>
   ));
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600); // Adjust the threshold as needed
+    };
+
+    // Initial check
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
-    <article className="product-card" style={{minWidth:'215px',}}>
+    // Replace 'false' with the actual value of isMobile
+
+    <article className="product-card" style={{ minWidth: isMobile ? '195px' : '215px' }}>
       <a className="stretched-link" href={link}>
         {/* Product image */}
         <div className="img-carousel" style={{borderBottom: 'solid .0625rem rgb(var(--color)/var(--border-alpha))', height:'100%', background:'url(https://assets.gumroad.com/packs/static/b47cbdb8030bef7eda53.png)'}}>
