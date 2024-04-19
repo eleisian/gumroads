@@ -10,7 +10,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [carouselWidth, setCarouselWidth] = useState<number>(0);
   const [buttonMargin, setButtonMargin] = useState<number>(0);
-  const [cardWidth, setCardWidth] = useState<number>(215); // Initial width of each card
+  const [cardWidth, setCardWidth] = useState<number>(0);; // Initial width of each card
   const cardGap = 11; // Gap between cards
 
   useEffect(() => {
@@ -60,12 +60,12 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
   };
 
   const scrollToLeft = () => {
-    const scrollDistance = carouselWidth / 2; // Scroll by half of carousel width
+    const scrollDistance = carouselWidth; // Scroll by half of carousel width
     scrollByDistance(-scrollDistance);
   };
 
   const scrollToRight = () => {
-    const scrollDistance = carouselWidth / 2; // Scroll by half of carousel width
+    const scrollDistance = carouselWidth; // Scroll by half of carousel width
     scrollByDistance(scrollDistance);
   };
 
@@ -74,7 +74,7 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
       <button className="card-carousel-button" onClick={scrollToLeft} style={{ marginLeft: buttonMargin, height: '15%' }}>
         <ArrowBackIosIcon fontSize="large" />
       </button>
-      <div ref={carouselRef} className="product-card-carousel" style={{ width: `${carouselWidth}px`, overflowX: 'scroll', scrollSnapType: 'x mandatory' }}>
+      <div ref={carouselRef} className="product-card-carousel" style={{ width: `auto`, overflowX: 'scroll'}}>
         {children}
       </div>
       <button className="card-carousel-button" onClick={scrollToRight} style={{ marginRight: buttonMargin, height: '15%' }}>
