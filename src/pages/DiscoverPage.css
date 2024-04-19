@@ -3750,15 +3750,47 @@ textarea {
 
 .product-card-carousel {
     position: relative;
-    background-color: green;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-flow: column;
     overflow-x: scroll;
-    gap:11px;
+    gap: 11px;
+    height: 475px;
     padding: 10px;
-    
+    scrollbar-width: none; /* Hide the scrollbar for Firefox */
 }
+
+/* Custom styling for scrollbar color (optional) */
+.product-card-carousel::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar for WebKit-based browsers */
+}
+
+@media (max-width: 600px) {
+    .product-card-carousel {
+        padding: 10;
+        width:150px;
+    }
+    article .product-card{
+        min-width:50px;
+    }
+}
+/* Hide the button on desktop devices */
+@media screen and (min-width: 768px) {
+    .nested-menu button {
+      display: none;
+    }
+  }
+  
+  /* Hide the pills and show the button on mobile devices */
+  @media screen and (max-width: 767px) {
+    .nested-menu .pill {
+      display: none;
+    }
+    .nested-menu button {
+      display: block;
+    }
+  }
+  
 .card-carousel-button{
     position: absolute;
     display: flex;
@@ -4805,22 +4837,22 @@ article.product-card:hover {
     box-shadow: .25rem .25rem 0rem rgb(var(--color))
 }
 
-article.product-card .carousel {
+article.product-card .img-carousel {
     position: relative;
     padding-bottom: 100%
 }
 
-article.product-card .carousel .items {
+article.product-card .img-carousel .items {
     position: absolute;
     width: 100%;
     border-radius: .25rem .25rem 0 0
 }
 
-article.product-card .carousel .items>* {
+article.product-card .img-carousel .items>* {
     height: 100%
 }
 
-article.product-card .carousel .items>* img {
+article.product-card .img-carousel .items>* img {
     object-fit: cover
 }
 
@@ -4864,7 +4896,7 @@ article.product-card footer>details>summary {
         grid-row: 1/-1
     }
 
-    article.product-card.upsell-card figure .carousel {
+    article.product-card.upsell-card figure .img-carousel {
         border-bottom: none;
         border-right: solid .0625rem rgb(var(--color)/var(--border-alpha));
         border-radius: .25rem 0 0 .25rem
@@ -4891,7 +4923,7 @@ article.product {
     }
 }
 
-article.product .carousel {
+article.product .img-carousel {
     grid-column: 1/-1
 }
 

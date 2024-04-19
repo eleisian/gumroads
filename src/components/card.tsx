@@ -1,31 +1,27 @@
 import React from 'react';
 
 interface CardProps {
+  id:number;
   imageUrl: string;
   description: string;
   creator: string;
   iconUrl: string;
   rating: number;
+  averageRating: number;
   price: number;
   link: string;
-  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-  onMouseDown?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-  onMouseUp?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
-  onMouseMove?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 const Card: React.FC<CardProps> = ({
+  id,
   imageUrl,
   description,
   creator,
   iconUrl,
   rating,
+  averageRating,
   price,
   link,
-  onClick,
-  onMouseDown,
-  onMouseUp,
-  onMouseMove,
 }) => {
   // Split the description by newline characters and map over the resulting array
   const descriptionLines = description.split('\n').map((line, index) => (
@@ -36,12 +32,12 @@ const Card: React.FC<CardProps> = ({
   ));
 
   return (
-    <article className="product-card" style={{minWidth:'215px'}}>
-      <a className="stretched-link">
+    <article className="product-card" style={{minWidth:'215px',}}>
+      <a className="stretched-link" href={link}>
         {/* Product image */}
-        <div className="img-carousel">
-          <div className="items">
-            <img src={imageUrl} alt="Product" />
+        <div className="img-carousel" style={{borderBottom: 'solid .0625rem rgb(var(--color)/var(--border-alpha))', height:'100%', background:'url(https://assets.gumroad.com/packs/static/b47cbdb8030bef7eda53.png)'}}>
+          <div className="items" style={{height:'100%'}}>
+            <img src={imageUrl} className='preview' alt="Product" />
           </div>
         </div>
       </a>
@@ -51,13 +47,14 @@ const Card: React.FC<CardProps> = ({
         <h4 itemProp="name">{descriptionLines}</h4>
         {/* User icon */}
         <a href={link} target="_blank" className="user" style={{ position: 'relative' }} rel="noreferrer">
-          <img className="user avatar" src={iconUrl} alt="Icon" />
+          <img className="user-avatar" src={iconUrl} alt="Icon" />
           {creator}
         </a>
         <div className="rating" aria-label="Rating" style={{ marginTop: 'var(--spacer-2)' }}>
           <span className="icon icon-solid-star"></span>
-          <span className="rating-average">4.9</span>
-          <span title="4.9 ratings">({rating})</span>
+          <span className="rating-average">{parseFloat(averageRating.toString()).toFixed(1)}</span>
+          <span>({rating})</span>
+
         </div>
       </header>
 
@@ -65,9 +62,9 @@ const Card: React.FC<CardProps> = ({
         <div itemScope itemProp="offers" itemType="https://schema.org/Offer" style={{ display: 'flex', alignItems: 'center' }}>
           <div className="has-tooltip right" aria-describedby=":rb:">
             <div className="price" itemProp="price" content="0">
-              {price}
+              ${price}+
             </div>
-            <div role="tooltip" id=":rb:">$0+</div>
+            <div role="tooltip" id=":rb:">${price}+</div>
           </div>
           <link
             itemProp="url"
