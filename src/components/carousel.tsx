@@ -71,13 +71,13 @@ const Carousel: React.FC<CarouselProps> = ({ children }) => {
 
   return (
     <div style={{ display: 'flex' }}>
-      <button className="card-carousel-button" onClick={scrollToLeft} style={{ marginLeft: buttonMargin, height: '15%' }}>
+      <button className="card-carousel-button" onClick={scrollToLeft} style={{ marginLeft: buttonMargin}}>
         <ArrowBackIosIcon fontSize="large" />
       </button>
       <div ref={carouselRef} className="product-card-carousel" style={{ width: `auto`, overflowX: 'scroll'}}>
         {children}
       </div>
-      <button className="card-carousel-button" onClick={scrollToRight} style={{ marginRight: buttonMargin, height: '15%' }}>
+      <button className="card-carousel-button" onClick={scrollToRight} style={{ marginRight: buttonMargin}}>
         <ArrowForwardIosIcon fontSize="large" />
       </button>
     </div>
